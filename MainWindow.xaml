@@ -1,0 +1,37 @@
+﻿<Window x:Class="ConstruMarket_ERP_V0._1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConstruMarket_ERP_V0._1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <!--<Grid>-->
+        
+        <DockPanel x:Name="MainDockPanel" LastChildFill="True" >
+            
+        <StackPanel x:Name="RouterStackPanel" DockPanel.Dock="Left" Width="160">
+            <TreeView>
+                <TreeViewItem Header="Configuración" IsExpanded="True">
+                    <TreeViewItem Header="Mecánicos" Selected="TreeViewItem_Selected"/>
+                    <TreeViewItem Header="Productos" Selected="TreeViewItem_Selected"/>
+                    <TreeViewItem Header="Clientes"/>
+                    <TreeViewItem Header="Categorias de equipo"/>
+                    <!--<TreeViewItem Header="Series"/>-->
+                </TreeViewItem>
+            </TreeView>
+        </StackPanel>
+
+        <!--<Grid DockPanel.Dock="Right" Background="White" x:Name="contentArea">
+            <TextBlock Text="Área de contenido principal" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        </Grid>-->
+
+        <ContentControl DockPanel.Dock="Right" Background="White" x:Name="contentArea">
+            <TextBlock Text="Área de contenido principal" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        </ContentControl>
+
+    </DockPanel>
+
+    <!--</Grid>-->
+</Window>
