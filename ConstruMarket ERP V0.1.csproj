@@ -104,7 +104,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TallerModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MecanicosViewModel.cs" />
     <Compile Include="ViewModels\ProductosViewModel.cs" />
+    <Compile Include="Views\MecanicosView.xaml.cs">
+      <DependentUpon>MecanicosView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductosView.xaml.cs">
       <DependentUpon>ProductosView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +124,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MecanicosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ProductosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
