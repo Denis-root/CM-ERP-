@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TALLERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATEGORIAEQUIPO">
+          <Key>
+            <PropertyRef Name="idcategoria" />
+          </Key>
+          <Property Name="idcategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="char" MaxLength="80" />
+          <Property Name="categoria" Type="text" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="idcliente" />
+          </Key>
+          <Property Name="idcliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="char" MaxLength="80" />
+          <Property Name="nombres" Type="text" />
+          <Property Name="apellido" Type="text" />
+          <Property Name="correo" Type="text" />
+          <Property Name="telefono" Type="char" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="EQUIPO">
+          <Key>
+            <PropertyRef Name="idequipo" />
+          </Key>
+          <Property Name="idequipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcategoria" Type="int" />
+          <Property Name="codigo" Type="char" MaxLength="80" />
+          <Property Name="nombre" Type="char" MaxLength="150" />
+          <Property Name="modelo" Type="char" MaxLength="150" />
+          <Property Name="marca" Type="char" MaxLength="150" />
+          <Property Name="serie" Type="char" MaxLength="150" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="MECANICO">
+          <Key>
+            <PropertyRef Name="idmecanico" />
+          </Key>
+          <Property Name="idmecanico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="char" MaxLength="80" />
+          <Property Name="nombres" Type="text" />
+          <Property Name="apellido" Type="text" />
+          <Property Name="correo" Type="text" />
+          <Property Name="telefono" Type="char" MaxLength="16" />
+          <Property Name="tarifahora" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="ODSCAB">
+          <Key>
+            <PropertyRef Name="idodscab" />
+          </Key>
+          <Property Name="idodscab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcliente" Type="int" />
+          <Property Name="idmecanico" Type="int" />
+          <Property Name="idequipo" Type="int" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="ODSET">
+          <Key>
+            <PropertyRef Name="idodsset" />
+          </Key>
+          <Property Name="idodsset" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idodscab" Type="int" />
+          <Property Name="idproducto" Type="int" />
+          <Property Name="codigo" Type="char" MaxLength="80" />
+          <Property Name="cantidad" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="idproducto" />
+          </Key>
+          <Property Name="idproducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="char" MaxLength="80" />
+          <Property Name="producto" Type="text" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <Association Name="FK__EQUIPO__idcatego__1AD3FDA4">
+          <End Role="CATEGORIAEQUIPO" Type="Self.CATEGORIAEQUIPO" Multiplicity="0..1" />
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAEQUIPO">
+              <PropertyRef Name="idcategoria" />
+            </Principal>
+            <Dependent Role="EQUIPO">
+              <PropertyRef Name="idcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSCAB__idclient__1DB06A4F">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="ODSCAB">
+              <PropertyRef Name="idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSCAB__idequipo__1F98B2C1">
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="0..1" />
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="idequipo" />
+            </Principal>
+            <Dependent Role="ODSCAB">
+              <PropertyRef Name="idequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSCAB__idmecani__1EA48E88">
+          <End Role="MECANICO" Type="Self.MECANICO" Multiplicity="0..1" />
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MECANICO">
+              <PropertyRef Name="idmecanico" />
+            </Principal>
+            <Dependent Role="ODSCAB">
+              <PropertyRef Name="idmecanico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSET__idodscab__22751F6C">
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="0..1" />
+          <End Role="ODSET" Type="Self.ODSET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ODSCAB">
+              <PropertyRef Name="idodscab" />
+            </Principal>
+            <Dependent Role="ODSET">
+              <PropertyRef Name="idodscab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSET__idproduct__236943A5">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="0..1" />
+          <End Role="ODSET" Type="Self.ODSET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="idproducto" />
+            </Principal>
+            <Dependent Role="ODSET">
+              <PropertyRef Name="idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TALLERModelStoreContainer">
+          <EntitySet Name="CATEGORIAEQUIPO" EntityType="Self.CATEGORIAEQUIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EQUIPO" EntityType="Self.EQUIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MECANICO" EntityType="Self.MECANICO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ODSCAB" EntityType="Self.ODSCAB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ODSET" EntityType="Self.ODSET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__EQUIPO__idcatego__1AD3FDA4" Association="Self.FK__EQUIPO__idcatego__1AD3FDA4">
+            <End Role="CATEGORIAEQUIPO" EntitySet="CATEGORIAEQUIPO" />
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSCAB__idclient__1DB06A4F" Association="Self.FK__ODSCAB__idclient__1DB06A4F">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="ODSCAB" EntitySet="ODSCAB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSCAB__idequipo__1F98B2C1" Association="Self.FK__ODSCAB__idequipo__1F98B2C1">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="ODSCAB" EntitySet="ODSCAB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSCAB__idmecani__1EA48E88" Association="Self.FK__ODSCAB__idmecani__1EA48E88">
+            <End Role="MECANICO" EntitySet="MECANICO" />
+            <End Role="ODSCAB" EntitySet="ODSCAB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSET__idodscab__22751F6C" Association="Self.FK__ODSET__idodscab__22751F6C">
+            <End Role="ODSCAB" EntitySet="ODSCAB" />
+            <End Role="ODSET" EntitySet="ODSET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSET__idproduct__236943A5" Association="Self.FK__ODSET__idproduct__236943A5">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="ODSET" EntitySet="ODSET" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TALLERModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CATEGORIAEQUIPO">
+          <Key>
+            <PropertyRef Name="idcategoria" />
+          </Key>
+          <Property Name="idcategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+          <Property Name="categoria" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EQUIPOes" Relationship="Self.FK__EQUIPO__idcatego__1AD3FDA4" FromRole="CATEGORIAEQUIPO" ToRole="EQUIPO" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="idcliente" />
+          </Key>
+          <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+          <Property Name="nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ODSCABs" Relationship="Self.FK__ODSCAB__idclient__1DB06A4F" FromRole="CLIENTE" ToRole="ODSCAB" />
+        </EntityType>
+        <EntityType Name="EQUIPO">
+          <Key>
+            <PropertyRef Name="idequipo" />
+          </Key>
+          <Property Name="idequipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcategoria" Type="Int32" />
+          <Property Name="codigo" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+          <Property Name="modelo" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+          <Property Name="marca" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+          <Property Name="serie" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="CATEGORIAEQUIPO" Relationship="Self.FK__EQUIPO__idcatego__1AD3FDA4" FromRole="EQUIPO" ToRole="CATEGORIAEQUIPO" />
+          <NavigationProperty Name="ODSCABs" Relationship="Self.FK__ODSCAB__idequipo__1F98B2C1" FromRole="EQUIPO" ToRole="ODSCAB" />
+        </EntityType>
+        <EntityType Name="MECANICO">
+          <Key>
+            <PropertyRef Name="idmecanico" />
+          </Key>
+          <Property Name="idmecanico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+          <Property Name="nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="tarifahora" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="ODSCABs" Relationship="Self.FK__ODSCAB__idmecani__1EA48E88" FromRole="MECANICO" ToRole="ODSCAB" />
+        </EntityType>
+        <EntityType Name="ODSCAB">
+          <Key>
+            <PropertyRef Name="idodscab" />
+          </Key>
+          <Property Name="idodscab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcliente" Type="Int32" />
+          <Property Name="idmecanico" Type="Int32" />
+          <Property Name="idequipo" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__ODSCAB__idclient__1DB06A4F" FromRole="ODSCAB" ToRole="CLIENTE" />
+          <NavigationProperty Name="EQUIPO" Relationship="Self.FK__ODSCAB__idequipo__1F98B2C1" FromRole="ODSCAB" ToRole="EQUIPO" />
+          <NavigationProperty Name="MECANICO" Relationship="Self.FK__ODSCAB__idmecani__1EA48E88" FromRole="ODSCAB" ToRole="MECANICO" />
+          <NavigationProperty Name="ODSETs" Relationship="Self.FK__ODSET__idodscab__22751F6C" FromRole="ODSCAB" ToRole="ODSET" />
+        </EntityType>
+        <EntityType Name="ODSET">
+          <Key>
+            <PropertyRef Name="idodsset" />
+          </Key>
+          <Property Name="idodsset" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idodscab" Type="Int32" />
+          <Property Name="idproducto" Type="Int32" />
+          <Property Name="codigo" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="ODSCAB" Relationship="Self.FK__ODSET__idodscab__22751F6C" FromRole="ODSET" ToRole="ODSCAB" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__ODSET__idproduct__236943A5" FromRole="ODSET" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="idproducto" />
+          </Key>
+          <Property Name="idproducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+          <Property Name="producto1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="ODSETs" Relationship="Self.FK__ODSET__idproduct__236943A5" FromRole="PRODUCTO" ToRole="ODSET" />
+        </EntityType>
+        <Association Name="FK__EQUIPO__idcatego__1AD3FDA4">
+          <End Role="CATEGORIAEQUIPO" Type="Self.CATEGORIAEQUIPO" Multiplicity="0..1" />
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAEQUIPO">
+              <PropertyRef Name="idcategoria" />
+            </Principal>
+            <Dependent Role="EQUIPO">
+              <PropertyRef Name="idcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSCAB__idclient__1DB06A4F">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="ODSCAB">
+              <PropertyRef Name="idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSCAB__idequipo__1F98B2C1">
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="0..1" />
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="idequipo" />
+            </Principal>
+            <Dependent Role="ODSCAB">
+              <PropertyRef Name="idequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSCAB__idmecani__1EA48E88">
+          <End Role="MECANICO" Type="Self.MECANICO" Multiplicity="0..1" />
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MECANICO">
+              <PropertyRef Name="idmecanico" />
+            </Principal>
+            <Dependent Role="ODSCAB">
+              <PropertyRef Name="idmecanico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSET__idodscab__22751F6C">
+          <End Role="ODSCAB" Type="Self.ODSCAB" Multiplicity="0..1" />
+          <End Role="ODSET" Type="Self.ODSET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ODSCAB">
+              <PropertyRef Name="idodscab" />
+            </Principal>
+            <Dependent Role="ODSET">
+              <PropertyRef Name="idodscab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ODSET__idproduct__236943A5">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="0..1" />
+          <End Role="ODSET" Type="Self.ODSET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="idproducto" />
+            </Principal>
+            <Dependent Role="ODSET">
+              <PropertyRef Name="idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TALLEREntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORIAEQUIPOes" EntityType="Self.CATEGORIAEQUIPO" />
+          <EntitySet Name="CLIENTEs" EntityType="Self.CLIENTE" />
+          <EntitySet Name="EQUIPOes" EntityType="Self.EQUIPO" />
+          <EntitySet Name="MECANICOes" EntityType="Self.MECANICO" />
+          <EntitySet Name="ODSCABs" EntityType="Self.ODSCAB" />
+          <EntitySet Name="ODSETs" EntityType="Self.ODSET" />
+          <EntitySet Name="PRODUCTOes" EntityType="Self.PRODUCTO" />
+          <AssociationSet Name="FK__EQUIPO__idcatego__1AD3FDA4" Association="Self.FK__EQUIPO__idcatego__1AD3FDA4">
+            <End Role="CATEGORIAEQUIPO" EntitySet="CATEGORIAEQUIPOes" />
+            <End Role="EQUIPO" EntitySet="EQUIPOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSCAB__idclient__1DB06A4F" Association="Self.FK__ODSCAB__idclient__1DB06A4F">
+            <End Role="CLIENTE" EntitySet="CLIENTEs" />
+            <End Role="ODSCAB" EntitySet="ODSCABs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSCAB__idequipo__1F98B2C1" Association="Self.FK__ODSCAB__idequipo__1F98B2C1">
+            <End Role="EQUIPO" EntitySet="EQUIPOes" />
+            <End Role="ODSCAB" EntitySet="ODSCABs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSCAB__idmecani__1EA48E88" Association="Self.FK__ODSCAB__idmecani__1EA48E88">
+            <End Role="MECANICO" EntitySet="MECANICOes" />
+            <End Role="ODSCAB" EntitySet="ODSCABs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSET__idodscab__22751F6C" Association="Self.FK__ODSET__idodscab__22751F6C">
+            <End Role="ODSCAB" EntitySet="ODSCABs" />
+            <End Role="ODSET" EntitySet="ODSETs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ODSET__idproduct__236943A5" Association="Self.FK__ODSET__idproduct__236943A5">
+            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
+            <End Role="ODSET" EntitySet="ODSETs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TALLERModelStoreContainer" CdmEntityContainer="TALLEREntities1">
+          <EntitySetMapping Name="CATEGORIAEQUIPOes">
+            <EntityTypeMapping TypeName="TALLERModel.CATEGORIAEQUIPO">
+              <MappingFragment StoreEntitySet="CATEGORIAEQUIPO">
+                <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTEs">
+            <EntityTypeMapping TypeName="TALLERModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPOes">
+            <EntityTypeMapping TypeName="TALLERModel.EQUIPO">
+              <MappingFragment StoreEntitySet="EQUIPO">
+                <ScalarProperty Name="idequipo" ColumnName="idequipo" />
+                <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MECANICOes">
+            <EntityTypeMapping TypeName="TALLERModel.MECANICO">
+              <MappingFragment StoreEntitySet="MECANICO">
+                <ScalarProperty Name="idmecanico" ColumnName="idmecanico" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="tarifahora" ColumnName="tarifahora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ODSCABs">
+            <EntityTypeMapping TypeName="TALLERModel.ODSCAB">
+              <MappingFragment StoreEntitySet="ODSCAB">
+                <ScalarProperty Name="idodscab" ColumnName="idodscab" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="idmecanico" ColumnName="idmecanico" />
+                <ScalarProperty Name="idequipo" ColumnName="idequipo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ODSETs">
+            <EntityTypeMapping TypeName="TALLERModel.ODSET">
+              <MappingFragment StoreEntitySet="ODSET">
+                <ScalarProperty Name="idodsset" ColumnName="idodsset" />
+                <ScalarProperty Name="idodscab" ColumnName="idodscab" />
+                <ScalarProperty Name="idproducto" ColumnName="idproducto" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOes">
+            <EntityTypeMapping TypeName="TALLERModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="idproducto" ColumnName="idproducto" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="producto1" ColumnName="producto" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

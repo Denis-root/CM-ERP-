@@ -47,6 +47,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,6 +67,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CATEGORIAEQUIPO.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CLIENTE.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EQUIPO.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MECANICO.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ODSCAB.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ODSET.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUCTO.cs">
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TallerModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TallerModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TallerModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TallerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TallerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TallerModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductosView.xaml.cs">
       <DependentUpon>ProductosView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +146,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="TallerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TallerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TallerModel.edmx.diagram">
+      <DependentUpon>TallerModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -119,6 +164,21 @@
     <Folder Include="Helpers\" />
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TallerModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TallerModel.edmx</DependentUpon>
+      <LastGenOutput>TallerModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TallerModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TallerModel.edmx</DependentUpon>
+      <LastGenOutput>TallerModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
