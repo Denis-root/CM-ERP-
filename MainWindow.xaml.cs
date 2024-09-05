@@ -37,15 +37,14 @@ namespace ConstruMarket_ERP_V0._1
                 switch (item.Header.ToString())
                 {
                     case "Productos":
-                        contentArea.Content = new ProductosView(); // `contentArea` es el nombre del Grid o Panel donde se mostrará la vista                        
+                        contentArea.Content = new ProductosView(); 
                         break;
                     case "Listado":
-                        contentArea.Content = new MecanicosView(); // Suponiendo que tienes un UserControl para Mecánicos                        
+                        contentArea.Content = new MecanicosView(); 
                         break;
                     case "Reporte":
-                        contentArea.Content = new MecanicosReportView(); // Carga la vista de Reporte de Mecánicos                        
-                        break;
-                        // Más casos según tus ítems
+                        contentArea.Content = new MecanicosReportView(); 
+                        break;                        
                 }
             }
         }

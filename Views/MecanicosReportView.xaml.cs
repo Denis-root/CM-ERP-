@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConstruMarket_ERP_V0._1.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace ConstruMarket_ERP_V0._1.Views
         public MecanicosReportView()
         {
             InitializeComponent();
+            this.DataContext = new MecanicosReporteViewModel();
         }
     }
 }

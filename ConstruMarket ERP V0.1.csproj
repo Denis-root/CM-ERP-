@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\MecanicoReporteRepository.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\CATEGORIAEQUIPO.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
@@ -80,6 +81,8 @@
     <Compile Include="Models\MECANICO.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MecaRepo01\MecanicoReporte.cs" />
+    <Compile Include="Models\MecaRepo01\TotalTarifa.cs" />
     <Compile Include="Models\ODSCAB.cs">
       <DependentUpon>TallerModel.tt</DependentUpon>
     </Compile>
@@ -104,6 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TallerModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MecanicosReporteViewModel.cs" />
     <Compile Include="ViewModels\MecanicosViewModel.cs" />
     <Compile Include="ViewModels\ProductosViewModel.cs" />
     <Compile Include="Views\MecanicosReportView.xaml.cs">
