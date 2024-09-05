@@ -1,0 +1,3 @@
+Se anexa archivo sa@DockMsql2022.sql con todos los queries necesarios para el esquema de base que utiliza el programa.
+Helper MecanicoReporteRepository posee hardcodeado cadena de conexion a base, se requiere configurar ademas de String Conexion de archivo App.config
+Git publico si se desea clonar: https://github.com/Denis-root/CM-ERP-.git
