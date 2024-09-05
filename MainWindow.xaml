@@ -14,7 +14,10 @@
         <StackPanel x:Name="RouterStackPanel" DockPanel.Dock="Left" Width="160">
             <TreeView>
                 <TreeViewItem Header="Configuración" IsExpanded="True">
-                    <TreeViewItem Header="Mecánicos" Selected="TreeViewItem_Selected"/>
+                    <TreeViewItem Header="Mecánicos" Selected="TreeViewItem_Selected">
+                        <TreeViewItem Header="Listado" Selected="TreeViewItem_Selected"/>
+                        <TreeViewItem Header="Reporte" Selected="TreeViewItem_Selected"/>
+                    </TreeViewItem>
                     <TreeViewItem Header="Productos" Selected="TreeViewItem_Selected"/>
                     <TreeViewItem Header="Clientes"/>
                     <TreeViewItem Header="Categorias de equipo"/>

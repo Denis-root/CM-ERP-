@@ -31,13 +31,19 @@ namespace ConstruMarket_ERP_V0._1
             TreeViewItem item = sender as TreeViewItem;
             if (item != null && item.Header != null)
             {
+
+                e.Handled = true;
+
                 switch (item.Header.ToString())
                 {
                     case "Productos":
-                        contentArea.Content = new ProductosView(); // `contentArea` es el nombre del Grid o Panel donde se mostrará la vista
+                        contentArea.Content = new ProductosView(); // `contentArea` es el nombre del Grid o Panel donde se mostrará la vista                        
                         break;
-                    case "Mecánicos":
-                        contentArea.Content = new MecanicosView(); // Suponiendo que tienes un UserControl para Mecánicos
+                    case "Listado":
+                        contentArea.Content = new MecanicosView(); // Suponiendo que tienes un UserControl para Mecánicos                        
+                        break;
+                    case "Reporte":
+                        contentArea.Content = new MecanicosReportView(); // Carga la vista de Reporte de Mecánicos                        
                         break;
                         // Más casos según tus ítems
                 }
