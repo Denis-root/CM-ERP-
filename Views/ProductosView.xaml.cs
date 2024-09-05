@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConstruMarket_ERP_V0._1.Models;
+using ConstruMarket_ERP_V0._1.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,22 @@ namespace ConstruMarket_ERP_V0._1.Views
         public ProductosView()
         {
             InitializeComponent();
+            this.DataContext = new ProductosViewModel();  // Asigna el ViewModel como DataContext del UserControl.
         }
+
+        private void productosDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var product = e.Row.Item as PRODUCTO;
+                if (product != null)
+                {
+                    var viewModel = this.DataContext as ProductosViewModel;
+                    viewModel.SaveChanges(product);
+                }
+            }
+        }
+
+
     }
 }

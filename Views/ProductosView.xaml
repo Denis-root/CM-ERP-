@@ -6,7 +6,25 @@
              xmlns:local="clr-namespace:ConstruMarket_ERP_V0._1.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid Background="White">
-        <TextBlock Text="Vista de Productos" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!--<DataGrid x:Name="productosDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Productos}" CanUserAddRows="True" CanUserDeleteRows="True">-->
+        <DataGrid x:Name="productosDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Productos}"
+          CanUserAddRows="True" CanUserDeleteRows="True" CellEditEnding="productosDataGrid_CellEditEnding">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Código" Binding="{Binding codigo, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Producto" Binding="{Binding producto1, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Precio" Binding="{Binding precio, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
+                <DataGridTemplateColumn Header="Acciones">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Eliminar" Command="{Binding DataContext.EliminarProductoCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
+
 </UserControl>

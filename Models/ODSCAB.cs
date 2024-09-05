@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConstruMarket_ERP_V0._1
+namespace ConstruMarket_ERP_V0._1.Models
 {
     using System;
     using System.Collections.Generic;

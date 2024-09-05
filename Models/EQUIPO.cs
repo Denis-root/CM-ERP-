@@ -7,26 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConstruMarket_ERP_V0._1
+namespace ConstruMarket_ERP_V0._1.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTE
+    public partial class EQUIPO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CLIENTE()
+        public EQUIPO()
         {
             this.ODSCABs = new HashSet<ODSCAB>();
         }
     
-        public int idcliente { get; set; }
+        public int idequipo { get; set; }
+        public Nullable<int> idcategoria { get; set; }
         public string codigo { get; set; }
-        public string nombres { get; set; }
-        public string apellido { get; set; }
-        public string correo { get; set; }
-        public string telefono { get; set; }
+        public string nombre { get; set; }
+        public string modelo { get; set; }
+        public string marca { get; set; }
+        public string serie { get; set; }
+        public Nullable<int> estado { get; set; }
     
+        public virtual CATEGORIAEQUIPO CATEGORIAEQUIPO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ODSCAB> ODSCABs { get; set; }
     }
